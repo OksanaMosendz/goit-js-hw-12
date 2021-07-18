@@ -1,12 +1,12 @@
 {{#each this}}
 <div>
-   <img src={{flag}} alt=`Flag of {{name}}`>
+   <img src={{flag}} height="200px" alt=`Flag of {{name}}`>
    <h1>{{name}}</h1>
 </div>
 <ul>
     <li><h2>Capital:</h2><p>{{capital}}</p></li>
     <li><h2>Population:</h2><p>{{population}}</p></li>
-    <li><h2>Languages:</h2><p></p>
-       </li>
+    <li class="languages"><h2>Languages:</h2><p>{{languages}}</p></li>
 </ul>
 {{/each}}
+
