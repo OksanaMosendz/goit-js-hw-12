@@ -6,6 +6,7 @@ function setCountryInfoStyle(){
   const countryName=document.querySelector('.country-name');
  
   countryName.style.display='inline-block';
+  countryName.style.fontSize='60px';
 
   setliStyle(countriesInfoListItems);
   setRightMargin(flagImg,10);
