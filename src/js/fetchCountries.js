@@ -9,6 +9,7 @@ const input= document.getElementById('search-box');
 
 function fetchCountries(name){
     if (input.value===''){
+      clearMarkup();
       return;
     }
     fetch(`https://restcountries.eu/rest/v2/name/${name}?fields=name;capital;population;flag;languages`)
