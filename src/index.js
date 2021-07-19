@@ -1,19 +1,20 @@
 import './sass/main.scss';
-
-import { fetchCountries } from './js/fetchCountries.js';
+import { input } from './js/fetchCountries.js';
+import { fetchCountries} from './js/fetchCountries.js';
 import debounce from 'lodash.debounce';
 
-const input= document.getElementById('search-box');
+
 
 const DEBOUNCE_DELAY =300;
 
 input.addEventListener (
   'input',
   debounce(
-    () => fetchCountries(input.value),
+    () => fetchCountries(input.value.trim()),
     DEBOUNCE_DELAY
   )
 );
+
 
 
 
