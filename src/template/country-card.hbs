@@ -1,12 +1,12 @@
 {{#each this}}
-<div>
-   <img src={{flag}} height="200px" alt=`Flag of {{name}}`>
-   <h1>{{name}}</h1>
-</div>
-<ul>
-    <li><h2>Capital:</h2><p>{{capital}}</p></li>
-    <li><h2>Population:</h2><p>{{population}}</p></li>
-    <li class="languages"><h2>Languages:</h2><p>{{languages}}</p></li>
+
+   <img  class="flag" src={{flag}} width="50px" height="100%" alt=`Flag of {{name}}`>
+   <h1 class="country-name">{{name}}</h1>
+
+<ul class="info-list">
+    <li class="info-list__item"><h2 class="info-list__title">Capital:</h2><p>{{capital}}</p></li>
+    <li class="info-list__item"><h2 class="info-list__title">Population:</h2><p>{{population}}</p></li>
+    <li class="info-list__item"><h2 class="info-list__title">Languages:</h2><p>{{languages}}</p></li>
 </ul>
 {{/each}}
 

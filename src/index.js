@@ -1,6 +1,6 @@
 import './sass/main.scss';
-import { input } from './js/fetchCountries.js';
-import { fetchCountries} from './js/fetchCountries.js';
+
+import { fetchCountries, input} from './js/fetchCountries.js';
 import debounce from 'lodash.debounce';
 
 

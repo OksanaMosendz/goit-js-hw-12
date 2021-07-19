@@ -1,13 +1,17 @@
 import countryCard from '../template/country-card.hbs';
 import countriesListCard from '../template/countries-cards.hbs';
 import Notiflix from "notiflix";
+import { setCountriesStyle, setCountryInfoStyle} from './style';
 
 const countryList=document.querySelector('.country-list');
 const countryInfo=document.querySelector('.country-info');
 const input= document.getElementById('search-box');
 
 function fetchCountries(name){
-    if (input.value===''){return;}
+    if (input.value===''){
+      return;
+    }
+
     fetch(`https://restcountries.eu/rest/v2/name/${name}?fields=name;capital;population;flag;languages`)
     .then((response)=>{
       if (!response.ok){
@@ -15,40 +19,32 @@ function fetchCountries(name){
       }
       return response.json();
     })
-
     .then((country)=>{
-      countryList.innerHTML='';
-      countryInfo.innerHTML='';  
-
-      if (country.length>2&&country.length<=10){
-        let markup= countriesListCard(country);
-        countryList.innerHTML=markup;
+      clearMarkup() 
+      if (country.length>=2&&country.length<=10){
+        countryList.innerHTML=countriesListCard(country);
         setCountriesStyle();
       }
-      else if  (country.length===1){
-          country[0].languages=country[0].languages.map((l)=>l.name).join(', '); 
-          let markup= countryCard(country);  
-          countryInfo.innerHTML=markup;
+      else if (country.length===1){
+        country[0].languages=country[0].languages.map((l)=>l.name).join(', '); 
+        countryInfo.innerHTML=countryCard(country);
+        setCountryInfoStyle();
       }
+
       else if (country.length>10){
-      
-     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
       }
-  
     })
-    .catch(error=>Notiflix.Notify.failure('Oops, there is no country with that name')
-  )
+    .catch(error=>{
+      clearMarkup()
+      Notiflix.Notify.failure('Oops, there is no country with that name');
+      }
+    )
 }
 
-export { fetchCountries}
-export { input}
+function clearMarkup(){
+  countryList.innerHTML='';
+  countryInfo.innerHTML='';
+}
 
-function setCountriesStyle(){
-const countriesRefs=document.querySelectorAll('.country__item');
-
-countriesRefs.forEach(ref =>{
-  ref.style.display='flex';
-  ref.style.listStyle='none';
-  ref.style.fontSize='20px';
-  ref.style.marginBottom='20px';
-})}
+export { fetchCountries, input}
